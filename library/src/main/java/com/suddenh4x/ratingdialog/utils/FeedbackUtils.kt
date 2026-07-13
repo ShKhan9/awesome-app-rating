@@ -12,11 +12,11 @@ import com.suddenh4x.ratingdialog.preferences.MailSettings
 
 internal object FeedbackUtils {
 
-    private const val GOOGLE_PLAY_IN_APP_URL = "market://details?id="
-    private const val GOOGLE_PLAY_WEB_URL = "https://play.google.com/store/apps/details?id="
+    const val GOOGLE_PLAY_IN_APP_URL = "market://details?id="
+    const val GOOGLE_PLAY_WEB_URL = "https://play.google.com/store/apps/details?id="
 
-    private const val APP_GALLERY_IN_APP_URL = "appmarket://details?id="
-    private const val APP_GALLERY_WEB_URL = "https://appgallery.huawei.com/app/C"
+    const val APP_GALLERY_IN_APP_URL = "appmarket://details?id="
+    const val APP_GALLERY_WEB_URL = "https://appgallery.huawei.com/app/C"
     internal const val URI_SCHEME_MAIL_TO = "mailto:"
 
     fun openStoreListing(context: Context,isHuawei: Boolean = false,huaweiAppId: String = "") {
