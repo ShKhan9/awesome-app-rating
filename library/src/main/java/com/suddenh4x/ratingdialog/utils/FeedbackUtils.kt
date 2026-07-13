@@ -21,11 +21,15 @@ internal object FeedbackUtils {
             val googlePlayIntent = Intent(Intent.ACTION_VIEW, uri)
             context.startActivity(googlePlayIntent)
         } catch (activityNotFoundException: ActivityNotFoundException) {
-            RatingLogger.info(context.getString(R.string.rating_dialog_log_feedback_utils_play_store_not_found))
-            val uri = Uri.parse(GOOGLE_PLAY_WEB_URL + context.packageName)
-            RatingLogger.info(context.getString(R.string.rating_dialog_log_feedback_utils_open_rating_url_web, uri))
-            val googlePlayIntent = Intent(Intent.ACTION_VIEW, uri)
-            context.startActivity(googlePlayIntent)
+            try {
+                RatingLogger.info(context.getString(R.string.rating_dialog_log_feedback_utils_play_store_not_found))
+                val uri = Uri.parse(GOOGLE_PLAY_WEB_URL + context.packageName)
+                RatingLogger.info(context.getString(R.string.rating_dialog_log_feedback_utils_open_rating_url_web, uri))
+                val googlePlayIntent = Intent(Intent.ACTION_VIEW, uri)
+                context.startActivity(googlePlayIntent)
+            } catch (activityNotFoundException: ActivityNotFoundException) {
+                RatingLogger.info(context.getString(R.string.rating_dialog_log_feedback_utils_play_store_not_found))
+            }
         }
     }
 
