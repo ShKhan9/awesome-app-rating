@@ -426,7 +426,7 @@ AppRating.openMailFeedback(context: Context, mailSettings: MailSettings)
 - Open your app's Play Store listing without showing up the rating dialog
 
 ```kotlin
-AppRating.openPlayStoreListing(context: Context)
+AppRating.openStoreListing(context: Context)
 ```
 
 - Check if the dialog has been agreed. This is true if the user has clicked the rate now button or if he gave you a rating below the defined threshold.
@@ -517,7 +517,7 @@ The following things are highly recommended to not annoy the user, which in turn
 - Don't show the dialog immediately after install
 - Don't set the rating threshold to 5
 - Show the `Never` button (after n times) so the user can decide whether or not to rate your app
-- Use the methods `openPlayStoreListing()` and `openMailFeedback()` in your app settings to give the user the ability of unprompted feedback
+- Use the methods `openStoreListing()` and `openMailFeedback()` in your app settings to give the user the ability of unprompted feedback
 - Don't use `AppRating.reset(this)` in your production app
 
 ## License

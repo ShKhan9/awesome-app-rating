@@ -64,6 +64,8 @@ class MainActivity : AppCompatActivity() {
 
         AppRating.Builder(this)
             .setDebug(true)
+            .setHuawei(true)
+            .setHuaweiAppId("32534244213")
             .setIconDrawable(iconDrawable)
             .showIfMeetsConditions()
     }

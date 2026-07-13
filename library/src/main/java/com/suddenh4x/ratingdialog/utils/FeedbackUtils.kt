@@ -5,29 +5,62 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.widget.Toast
+import com.suddenh4x.ratingdialog.AppRating
 import com.suddenh4x.ratingdialog.R
 import com.suddenh4x.ratingdialog.logging.RatingLogger
 import com.suddenh4x.ratingdialog.preferences.MailSettings
 
 internal object FeedbackUtils {
-    internal const val GOOGLE_PLAY_WEB_URL = "https://play.google.com/store/apps/details?id="
-    internal const val GOOGLE_PLAY_IN_APP_URL = "market://details?id="
+
+    private const val GOOGLE_PLAY_IN_APP_URL = "market://details?id="
+    private const val GOOGLE_PLAY_WEB_URL = "https://play.google.com/store/apps/details?id="
+
+    private const val APP_GALLERY_IN_APP_URL = "appmarket://details?id="
+    private const val APP_GALLERY_WEB_URL = "https://appgallery.huawei.com/app/C"
     internal const val URI_SCHEME_MAIL_TO = "mailto:"
 
-    fun openPlayStoreListing(context: Context) {
+    fun openStoreListing(context: Context,isHuawei: Boolean = false,huaweiAppId: String = "") {
+        if (isHuawei) {
+            openHuawei(context,huaweiAppId)
+        }
+        else {
+            openGooglePlay(context)
+        }
+    }
+
+    private fun openGooglePlay(context: Context) {
         try {
             val uri = Uri.parse(GOOGLE_PLAY_IN_APP_URL + context.packageName)
             RatingLogger.info(context.getString(R.string.rating_dialog_log_feedback_utils_open_rating_url, uri))
             val googlePlayIntent = Intent(Intent.ACTION_VIEW, uri)
             context.startActivity(googlePlayIntent)
-        } catch (activityNotFoundException: ActivityNotFoundException) {
+        } catch (_: ActivityNotFoundException) {
             try {
                 RatingLogger.info(context.getString(R.string.rating_dialog_log_feedback_utils_play_store_not_found))
                 val uri = Uri.parse(GOOGLE_PLAY_WEB_URL + context.packageName)
                 RatingLogger.info(context.getString(R.string.rating_dialog_log_feedback_utils_open_rating_url_web, uri))
                 val googlePlayIntent = Intent(Intent.ACTION_VIEW, uri)
                 context.startActivity(googlePlayIntent)
-            } catch (activityNotFoundException: ActivityNotFoundException) {
+            } catch (_: ActivityNotFoundException) {
+                RatingLogger.info(context.getString(R.string.rating_dialog_log_feedback_utils_play_store_not_found))
+            }
+        }
+    }
+
+    private fun openHuawei(context: Context,id: String) {
+        try {
+            val uri = Uri.parse(APP_GALLERY_IN_APP_URL + context.packageName)
+            RatingLogger.info(context.getString(R.string.rating_dialog_log_feedback_utils_open_rating_url, uri))
+            val appGalleryIntent = Intent(Intent.ACTION_VIEW, uri)
+            context.startActivity(appGalleryIntent)
+        } catch (_: ActivityNotFoundException) {
+            try {
+                RatingLogger.info(context.getString(R.string.rating_dialog_log_feedback_utils_play_store_not_found))
+                val uri = Uri.parse(APP_GALLERY_WEB_URL + id)
+                RatingLogger.info(context.getString(R.string.rating_dialog_log_feedback_utils_open_rating_url_web, uri))
+                val appGalleryIntent = Intent(Intent.ACTION_VIEW, uri)
+                context.startActivity(appGalleryIntent)
+            } catch (_: ActivityNotFoundException) {
                 RatingLogger.info(context.getString(R.string.rating_dialog_log_feedback_utils_play_store_not_found))
             }
         }

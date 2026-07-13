@@ -557,10 +557,10 @@ class AppRatingTest {
     @Test
     fun `open play store listing calls correct function of FeedbackUtils`() {
         mockkObject(FeedbackUtils)
-        every { FeedbackUtils.openPlayStoreListing(any()) } just Runs
+        every { FeedbackUtils.openStoreListing(any()) } just Runs
         val context = mockk<Context>()
-        AppRating.openPlayStoreListing(context)
-        verify(exactly = 1) { FeedbackUtils.openPlayStoreListing(context) }
+        AppRating.openStoreListing(context)
+        verify(exactly = 1) { FeedbackUtils.openStoreListing(context) }
     }
 
     private fun getBuilder() = AppRating.Builder(activity, dialogOptions)

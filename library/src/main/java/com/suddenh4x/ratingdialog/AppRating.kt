@@ -42,7 +42,7 @@ object AppRating {
         mailSettings: MailSettings,
     ) = FeedbackUtils.openMailFeedback(context, mailSettings)
 
-    fun openPlayStoreListing(context: Context) = FeedbackUtils.openPlayStoreListing(context)
+    fun openStoreListing(context: Context) = FeedbackUtils.openStoreListing(context)
 
     data class Builder(var componentActivity: ComponentActivity) {
 
@@ -305,6 +305,14 @@ object AppRating {
                 this.isDebug = isDebug
                 RatingLogger.warn(componentActivity.getString(R.string.rating_dialog_log_set_debug, isDebug))
             }
+
+        fun setHuawei(isHuawei: Boolean) = apply {
+            dialogOptions.isHuawei = isHuawei
+        }
+
+        fun setHuaweiAppId(id: String) = apply {
+            dialogOptions.huaweiAppId = id
+        }
 
         /**
          * Google in-app review

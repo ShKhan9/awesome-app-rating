@@ -24,6 +24,10 @@ internal class DialogOptions : Serializable {
     var countAppLaunch: Boolean = true
     var countOfLaterButtonClicksToShowNeverButton = 0
 
+    var isHuawei = false
+
+    var huaweiAppId = ""
+
     /**
      * rating dialog overview
      */
