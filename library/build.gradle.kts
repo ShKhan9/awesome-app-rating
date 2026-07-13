@@ -66,7 +66,7 @@ afterEvaluate {
 
 mavenPublishing {
     publishToMavenCentral(automaticRelease = true)
-    if (System.getenv("JITPACK") == null) {
+    if (!System.getenv().containsKey("JITPACK")) {
         signAllPublications()
     }
 
