@@ -21,7 +21,7 @@ internal object FeedbackUtils {
 
     fun openStoreListing(context: Context,isHuawei: Boolean = false,huaweiAppId: String = "") {
         if (isHuawei) {
-            openHuawei(context,huaweiAppId)
+            openAppGallery(context,huaweiAppId)
         }
         else {
             openGooglePlay(context)
@@ -47,7 +47,7 @@ internal object FeedbackUtils {
         }
     }
 
-    private fun openHuawei(context: Context,id: String) {
+    private fun openAppGallery(context: Context,id: String) {
         try {
             val uri = Uri.parse(APP_GALLERY_IN_APP_URL + context.packageName)
             RatingLogger.info(context.getString(R.string.rating_dialog_log_feedback_utils_open_rating_url, uri))
