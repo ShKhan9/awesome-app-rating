@@ -7,7 +7,7 @@ plugins {
     alias(libs.plugins.vanniktech.maven.publish)
 }
 
-val version = "2.9.0"
+val version = project.version.toString()
 
 kotlin {
     jvmToolchain(libs.versions.jvmToolchain.get().toInt())
