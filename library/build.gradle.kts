@@ -65,10 +65,6 @@ afterEvaluate {
 }
 
 mavenPublishing {
-    publishToMavenCentral(automaticRelease = true)
-    if (!System.getenv().containsKey("JITPACK")) {
-        signAllPublications()
-    }
 
     coordinates("com.suddenh4x.ratingdialog", "awesome-app-rating", version)
 
